@@ -1,0 +1,11 @@
+.close {
+    padding: 8px;
+    position: absolute;
+    right: 0;
+    top: 4;
+    color: var(--gray-300);
+
+    &:hover {
+        color: var(--gray-400) !important;
+    }
+}
