@@ -5,6 +5,9 @@ const path = require("path");
 const fs = require("fs");
 const deps = require("./package.json").dependencies;
 
+const { BUNDLE_ANALYZER, NODE_ENV = "" } = process.env;
+const isProd = NODE_ENV === "production";
+
 // const oldWidgetNames = fs
 //   .readdirSync("./src/oldWidgets/", { withFileTypes: true })
 //   .map((file) => {
@@ -91,7 +94,9 @@ module.exports = {
         "./constants/widgets": "./src/constants/widgets",
       },
       remotes: {
-        dashboard: "dashboard@http://localhost:3001/remoteEntry.js",
+        dashboard: isProd
+          ? "dashboard@https://ruslauz.github.io/MF-Dashboard/remoteEntry.js"
+          : "dashboard@http://localhost:3001/remoteEntry.js",
       },
       shared: {
         ...deps,
